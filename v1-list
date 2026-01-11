@@ -1,0 +1,659 @@
+        const library = [
+            // --- A ---
+            {
+                id: 'abs',
+                category: 'Built-in',
+                title: 'abs()',
+                desc: 'Returns the absolute value of a number.',
+                content: `
+                    <p>Returns the non-negative value of a number (magnitude).</p>
+                    <pre>print(abs(-5))    # 5\nprint(abs(3.14))  # 3.14\nprint(abs(3+4j))  # 5.0 (magnitude of complex)</pre>`
+            },
+            {
+                id: 'all',
+                category: 'Built-in',
+                title: 'all()',
+                desc: 'Returns True if all elements in iterable are true.',
+                content: `
+                    <p>Returns <code>True</code> if every item in the list/tuple evaluates to True (or if it is empty).</p>
+                    <pre>print(all([True, True, True]))  # True\nprint(all([True, False]))       # False\nprint(all([1, 2, 0]))           # False (0 is False)</pre>`
+            },
+            {
+                id: 'any',
+                category: 'Built-in',
+                title: 'any()',
+                desc: 'Returns True if any element in iterable is true.',
+                content: `
+                    <p>Returns <code>True</code> if at least one item is True.</p>
+                    <pre>print(any([False, False, True])) # True\nprint(any([0, 0, 1]))            # True</pre>`
+            },
+            {
+                id: 'ascii',
+                category: 'Built-in',
+                title: 'ascii()',
+                desc: 'Returns a printable representation of an object.',
+                content: `
+                    <p>Similar to <code>repr()</code>, but escapes non-ASCII characters.</p>
+                    <pre>print(ascii('Pythön'))\n# Output: 'Pyth\\xf6n'</pre>`
+            },
+
+            // --- B ---
+            {
+                id: 'bin',
+                category: 'Built-in',
+                title: 'bin()',
+                desc: 'Converts an integer to a binary string.',
+                content: `
+                    <p>Prefixes the result with <code>0b</code>.</p>
+                    <pre>print(bin(3))   # 0b11\nprint(bin(-10)) # -0b1010</pre>`
+            },
+            {
+                id: 'bool',
+                category: 'Built-in',
+                title: 'bool()',
+                desc: 'Converts a value to a Boolean.',
+                content: `
+                    <p>Returns <code>True</code> or <code>False</code>.</p>
+                    <pre>print(bool(1))      # True\nprint(bool(0))      # False\nprint(bool([]))     # False (Empty list)</pre>`
+            },
+            {
+                id: 'breakpoint',
+                category: 'Built-in',
+                title: 'breakpoint()',
+                desc: 'Drops into the debugger at the call site.',
+                content: `
+                    <p>Calls <code>sys.breakpointhook()</code>. Typically enters pdb.</p>
+                    <pre>x = 10\nbreakpoint() # Pauses execution here\ny = 20</pre>`
+            },
+
+            // --- C ---
+            {
+                id: 'callable',
+                category: 'Built-in',
+                title: 'callable()',
+                desc: 'Checks if the object appears callable.',
+                content: `
+                    <p>Returns True for functions, classes, and objects with <code>__call__</code>.</p>
+                    <pre>def func(): pass\nx = 5\n\nprint(callable(func)) # True\nprint(callable(x))    # False</pre>`
+            },
+            {
+                id: 'chr',
+                category: 'Built-in',
+                title: 'chr()',
+                desc: 'Returns string representing a character from unicode.',
+                content: `
+                    <p>Inverse of <code>ord()</code>.</p>
+                    <pre>print(chr(97))    # 'a'\nprint(chr(8364))  # '€'</pre>`
+            },
+            {
+                id: 'classmethod',
+                category: 'Built-in',
+                title: '@classmethod',
+                desc: 'Transform a method into a class method.',
+                content: `
+                    <p>Receives the class as the first argument implicitly.</p>
+                    <pre>class C:\n    @classmethod\n    def f(cls):\n        print(cls.__name__)\n\nC.f() # Output: C</pre>`
+            },
+            {
+                id: 'compile',
+                category: 'Built-in',
+                title: 'compile()',
+                desc: 'Compiles source into a code or AST object.',
+                content: `
+                    <p>Code objects can be executed by <code>exec()</code> or <code>eval()</code>.</p>
+                    <pre>code = compile('print(5)', '', 'exec')\nexec(code) # 5</pre>`
+            },
+            {
+                id: 'complex',
+                category: 'Built-in',
+                title: 'complex()',
+                desc: 'Creates a complex number.',
+                content: `
+                    <p>Form: real + imag*j</p>
+                    <pre>print(complex(2, 3)) # (2+3j)\nprint(complex('1+2j'))</pre>`
+            },
+
+            // --- D ---
+            {
+                id: 'delattr',
+                category: 'Built-in',
+                title: 'delattr()',
+                desc: 'Deletes the named attribute from an object.',
+                content: `
+                    <p>Equivalent to <code>del x.y</code>.</p>
+                    <pre>class Person:\n    name = "John"\n\np = Person()\ndelattr(Person, 'name')</pre>`
+            },
+            {
+                id: 'dict',
+                category: 'Built-in',
+                title: 'dict()',
+                desc: 'Creates a new dictionary.',
+                content: `
+                    <p>Mapping of keys to values.</p>
+                    <pre>d = dict(a=1, b=2)\nd2 = dict([('a', 1), ('b', 2)])\nprint(d) # {'a': 1, 'b': 2}</pre>`
+            },
+            {
+                id: 'dir',
+                category: 'Built-in',
+                title: 'dir()',
+                desc: 'Returns list of valid attributes of an object.',
+                content: `
+                    <p>Without arguments, returns names in current local scope.</p>
+                    <pre>import math\nprint(dir(math))\n# ['acos', 'acosh', ...]</pre>`
+            },
+            {
+                id: 'divmod',
+                category: 'Built-in',
+                title: 'divmod()',
+                desc: 'Returns quotient and remainder.',
+                content: `
+                    <p>Returns a tuple <code>(x // y, x % y)</code>.</p>
+                    <pre>print(divmod(10, 3))\n# Output: (3, 1)</pre>`
+            },
+
+            // --- E ---
+            {
+                id: 'enumerate',
+                category: 'Built-in',
+                title: 'enumerate()',
+                desc: 'Returns an enumerate object (index, value).',
+                content: `
+                    <p>Adds a counter to an iterable.</p>
+                    <pre>seasons = ['Spring', 'Summer']\nfor i, val in enumerate(seasons):\n    print(i, val)\n# 0 Spring\n# 1 Summer</pre>`
+            },
+            {
+                id: 'eval',
+                category: 'Built-in',
+                title: 'eval()',
+                desc: 'Evaluates a Python expression string.',
+                content: `
+                    <p class="text-red-500 font-bold">Warning: Executing arbitrary code is dangerous.</p>
+                    <pre>x = 1\nprint(eval('x + 1')) # 2</pre>`
+            },
+            {
+                id: 'exec',
+                category: 'Built-in',
+                title: 'exec()',
+                desc: 'Executes dynamically created Python code.',
+                content: `
+                    <p>Unlike eval, this handles statements (loops, imports).</p>
+                    <pre>program = 'a = 5\\nb=10\\nprint(a+b)'\nexec(program) # 15</pre>`
+            },
+
+            // --- F ---
+            {
+                id: 'filter',
+                category: 'Built-in',
+                title: 'filter()',
+                desc: 'Filters elements from an iterable.',
+                content: `
+                    <p>Constructs an iterator from elements for which function returns true.</p>
+                    <pre>def is_even(n): return n % 2 == 0\n\nnums = [1, 2, 3, 4]\nevens = list(filter(is_even, nums))\nprint(evens) # [2, 4]</pre>`
+            },
+            {
+                id: 'float',
+                category: 'Built-in',
+                title: 'float()',
+                desc: 'Returns a floating point number.',
+                content: `
+                    <p>Converts integers or strings to floats.</p>
+                    <pre>print(float(5))      # 5.0\nprint(float("3.14")) # 3.14</pre>`
+            },
+            {
+                id: 'format',
+                category: 'Built-in',
+                title: 'format()',
+                desc: 'Formats a value using a specific format specifier.',
+                content: `
+                    <p>See PEP 3101 for formatting rules.</p>
+                    <pre>print(format(0.5, '%'))  # 50.000000%\nprint(format(123, 'b'))  # 1111011 (binary)</pre>`
+            },
+            {
+                id: 'frozenset',
+                category: 'Built-in',
+                title: 'frozenset()',
+                desc: 'Returns an immutable frozenset object.',
+                content: `
+                    <p>Like a set, but cannot be changed (and thus is hashable).</p>
+                    <pre>fs = frozenset([1, 2, 3])\n# fs.add(4) -> AttributeError</pre>`
+            },
+
+            // --- G ---
+            {
+                id: 'getattr',
+                category: 'Built-in',
+                title: 'getattr()',
+                desc: 'Returns the value of a named attribute.',
+                content: `
+                    <p>Equivalent to <code>x.y</code>.</p>
+                    <pre>class Person: name = "Bob"\nprint(getattr(Person, 'name')) # Bob</pre>`
+            },
+            {
+                id: 'globals',
+                category: 'Built-in',
+                title: 'globals()',
+                desc: 'Returns the dictionary representing the global symbol table.',
+                content: `
+                    <p>Useful for debugging scope.</p>
+                    <pre>print(globals())</pre>`
+            },
+
+            // --- H ---
+            {
+                id: 'hasattr',
+                category: 'Built-in',
+                title: 'hasattr()',
+                desc: 'True if string is the name of one of the object attributes.',
+                content: `
+                    <p>Based on calling getattr() and catching AttributeError.</p>
+                    <pre>class A: x=1\nprint(hasattr(A, 'x')) # True</pre>`
+            },
+            {
+                id: 'hash',
+                category: 'Built-in',
+                title: 'hash()',
+                desc: 'Returns the hash value of the object.',
+                content: `
+                    <p>Used for dictionary keys and set members.</p>
+                    <pre>print(hash("python"))</pre>`
+            },
+            {
+                id: 'help',
+                category: 'Built-in',
+                title: 'help()',
+                desc: 'Invokes the built-in help system.',
+                content: `
+                    <p>If no argument is given, starts interactive help system.</p>
+                    <pre>help(len) # Prints docs for len</pre>`
+            },
+            {
+                id: 'hex',
+                category: 'Built-in',
+                title: 'hex()',
+                desc: 'Converts integer to lowercase hex string.',
+                content: `
+                    <p>Prefixes with <code>0x</code>.</p>
+                    <pre>print(hex(255)) # 0xff</pre>`
+            },
+
+            // --- I ---
+            {
+                id: 'id',
+                category: 'Built-in',
+                title: 'id()',
+                desc: 'Returns the identity of an object.',
+                content: `
+                    <p>This is the memory address in CPython.</p>
+                    <pre>a = "foo"\nprint(id(a))</pre>`
+            },
+            {
+                id: 'input',
+                category: 'Built-in',
+                title: 'input()',
+                desc: 'Reads a line from input, converts to string.',
+                content: `
+                    <p>Halts execution until user types enter.</p>
+                    <pre>name = input("Who are you? ")\nprint(f"Hello {name}")</pre>`
+            },
+            {
+                id: 'int',
+                category: 'Built-in',
+                title: 'int()',
+                desc: 'Converts number or string to an integer.',
+                content: `
+                    <p>Can specify base for strings.</p>
+                    <pre>print(int("10"))      # 10\nprint(int("10", 2))   # 2 (binary)</pre>`
+            },
+            {
+                id: 'isinstance',
+                category: 'Built-in',
+                title: 'isinstance()',
+                desc: 'Checks if object is an instance of class.',
+                content: `
+                    <p>Supports a tuple of classes.</p>
+                    <pre>print(isinstance(5, int)) # True\nprint(isinstance(5, (float, str))) # False</pre>`
+            },
+            {
+                id: 'iter',
+                category: 'Built-in',
+                title: 'iter()',
+                desc: 'Returns an iterator object.',
+                content: `
+                    <p>Object must support iteration protocol.</p>
+                    <pre>it = iter([1, 2])\nprint(next(it)) # 1</pre>`
+            },
+
+            // --- L ---
+            {
+                id: 'len',
+                category: 'Built-in',
+                title: 'len()',
+                desc: 'Returns the number of items in an object.',
+                content: `
+                    <p>Works with sequences (string, bytes, tuple, list, range) or collections.</p>
+                    <pre>my_list = [1, 2, 3]\nprint(len(my_list)) # 3</pre>`
+            },
+            {
+                id: 'list',
+                category: 'Built-in',
+                title: 'list()',
+                desc: 'Creates a mutable sequence list.',
+                content: `
+                    <p>Converts iterables to a list.</p>
+                    <pre>print(list((1, 2, 3))) # [1, 2, 3]\nprint(list('abc'))     # ['a', 'b', 'c']</pre>`
+            },
+            {
+                id: 'locals',
+                category: 'Built-in',
+                title: 'locals()',
+                desc: 'Returns dict of current local symbol table.',
+                content: `
+                    <p>Updates and returns a dictionary representing the current local symbol table.</p>
+                    <pre>def test():\n    x = 1\n    print(locals())\n\ntest() # {'x': 1}</pre>`
+            },
+
+            // --- M ---
+            {
+                id: 'map',
+                category: 'Built-in',
+                title: 'map()',
+                desc: 'Applies function to every item of iterable.',
+                content: `
+                    <p>Returns an iterator.</p>
+                    <pre>def double(n): return n*2\n\nres = map(double, [1, 2, 3])\nprint(list(res)) # [2, 4, 6]</pre>`
+            },
+            {
+                id: 'max',
+                category: 'Built-in',
+                title: 'max()',
+                desc: 'Returns the largest item.',
+                content: `
+                    <p>Can take multiple arguments or an iterable.</p>
+                    <pre>print(max([1, 5, 2])) # 5\nprint(max(1, 10))     # 10</pre>`
+            },
+            {
+                id: 'min',
+                category: 'Built-in',
+                title: 'min()',
+                desc: 'Returns the smallest item.',
+                content: `
+                    <p>Can take multiple arguments or an iterable.</p>
+                    <pre>print(min([1, 5, 2])) # 1</pre>`
+            },
+
+            // --- N ---
+            {
+                id: 'next',
+                category: 'Built-in',
+                title: 'next()',
+                desc: 'Retrieves the next item from an iterator.',
+                content: `
+                    <p>Raises StopIteration when exhausted unless default is provided.</p>
+                    <pre>it = iter([1, 2])\nprint(next(it)) # 1\nprint(next(it)) # 2</pre>`
+            },
+
+            // --- O ---
+            {
+                id: 'object',
+                category: 'Built-in',
+                title: 'object()',
+                desc: 'Returns a new featureless object.',
+                content: `
+                    <p>The base for all classes.</p>
+                    <pre>o = object()\nprint(o)</pre>`
+            },
+            {
+                id: 'oct',
+                category: 'Built-in',
+                title: 'oct()',
+                desc: 'Converts integer to octal string.',
+                content: `
+                    <p>Prefixes with <code>0o</code>.</p>
+                    <pre>print(oct(8)) # 0o10</pre>`
+            },
+            {
+                id: 'open',
+                category: 'Built-in',
+                title: 'open()',
+                desc: 'Opens a file and returns a file object.',
+                content: `
+                    <p>Modes: 'r' (read), 'w' (write), 'a' (append), 'b' (binary).</p>
+                    <pre>with open('file.txt', 'w') as f:\n    f.write("Hello")</pre>`
+            },
+            {
+                id: 'ord',
+                category: 'Built-in',
+                title: 'ord()',
+                desc: 'Returns Unicode code point for a character.',
+                content: `
+                    <p>Inverse of <code>chr()</code>.</p>
+                    <pre>print(ord('a')) # 97</pre>`
+            },
+
+            // --- P ---
+            {
+                id: 'pow',
+                category: 'Built-in',
+                title: 'pow()',
+                desc: 'Returns base to the power of exp.',
+                content: `
+                    <p>Optional third argument for modulo.</p>
+                    <pre>print(pow(2, 3))    # 8\nprint(pow(2, 3, 5)) # 8 % 5 = 3</pre>`
+            },
+            {
+                id: 'print',
+                category: 'Built-in',
+                title: 'print()',
+                desc: 'Prints objects to the text stream file.',
+                content: `
+                    <p>The standard way to output data to the console.</p>
+                    <pre>print(*objects, sep=' ', end='\\n')</pre>
+                    <h4 class="font-bold mt-4">Examples:</h4>
+                    <pre>print("Hello", "World", sep="-")\n# Output: Hello-World</pre>`
+            },
+            {
+                id: 'property',
+                category: 'Built-in',
+                title: 'property()',
+                desc: 'Returns a property attribute.',
+                content: `
+                    <p>Used as a decorator to create managed attributes.</p>
+                    <pre>class C:\n    @property\n    def x(self):\n        return 'I am x'</pre>`
+            },
+
+            // --- R ---
+            {
+                id: 'range',
+                category: 'Built-in',
+                title: 'range()',
+                desc: 'Returns an immutable sequence of numbers.',
+                content: `
+                    <p>Commonly used in loops.</p>
+                    <pre>list(range(5))      # [0, 1, 2, 3, 4]\nlist(range(1, 4))   # [1, 2, 3]</pre>`
+            },
+            {
+                id: 'repr',
+                category: 'Built-in',
+                title: 'repr()',
+                desc: 'Returns a printable string representation.',
+                content: `
+                    <p>Ideally valid Python code to recreate the object.</p>
+                    <pre>s = "Hello"\nprint(repr(s)) # "'Hello'"</pre>`
+            },
+            {
+                id: 'reversed',
+                category: 'Built-in',
+                title: 'reversed()',
+                desc: 'Returns a reverse iterator.',
+                content: `
+                    <p>Object must have <code>__reversed__</code> or be a sequence.</p>
+                    <pre>print(list(reversed([1, 2, 3]))) # [3, 2, 1]</pre>`
+            },
+            {
+                id: 'round',
+                category: 'Built-in',
+                title: 'round()',
+                desc: 'Rounds a number to a given precision.',
+                content: `
+                    <p>Rounds to nearest even number for .5 cases.</p>
+                    <pre>print(round(3.14159, 2)) # 3.14\nprint(round(0.5))        # 0\nprint(round(1.5))        # 2</pre>`
+            },
+
+            // --- S ---
+            {
+                id: 'set',
+                category: 'Built-in',
+                title: 'set()',
+                desc: 'Returns a new set object.',
+                content: `
+                    <p>Unordered collection of unique elements.</p>
+                    <pre>print(set([1, 2, 2, 3])) # {1, 2, 3}</pre>`
+            },
+            {
+                id: 'setattr',
+                category: 'Built-in',
+                title: 'setattr()',
+                desc: 'Sets the value of a named attribute.',
+                content: `
+                    <p>Counterpart to <code>getattr()</code>.</p>
+                    <pre>class A: pass\na = A()\nsetattr(a, 'x', 5)\nprint(a.x) # 5</pre>`
+            },
+            {
+                id: 'slice',
+                category: 'Built-in',
+                title: 'slice()',
+                desc: 'Returns a slice object.',
+                content: `
+                    <p>Used for slicing syntax <code>obj[start:stop:step]</code>.</p>
+                    <pre>a = [0, 1, 2, 3, 4]\ns = slice(0, 5, 2)\nprint(a[s]) # [0, 2, 4]</pre>`
+            },
+            {
+                id: 'sorted',
+                category: 'Built-in',
+                title: 'sorted()',
+                desc: 'Returns a new sorted list from an iterable.',
+                content: `
+                    <p>Does not modify the original list.</p>
+                    <pre>a = [3, 1, 2]\nprint(sorted(a)) # [1, 2, 3]</pre>`
+            },
+            {
+                id: 'staticmethod',
+                category: 'Built-in',
+                title: '@staticmethod',
+                desc: 'Transform a method into a static method.',
+                content: `
+                    <p>Does not receive an implicit first argument.</p>
+                    <pre>class C:\n    @staticmethod\n    def f(a, b):\n        print(a, b)</pre>`
+            },
+            {
+                id: 'str',
+                category: 'Built-in',
+                title: 'str()',
+                desc: 'Returns a string version of an object.',
+                content: `
+                    <p>The "nice" printable string representation.</p>
+                    <pre>print(str(10)) # "10"</pre>`
+            },
+            {
+                id: 'sum',
+                category: 'Built-in',
+                title: 'sum()',
+                desc: 'Sums the items of an iterable.',
+                content: `
+                    <p>Sums a start value (default 0) and items.</p>
+                    <pre>print(sum([1, 2, 3]))    # 6\nprint(sum([1, 2], 10))   # 13</pre>`
+            },
+            {
+                id: 'super',
+                category: 'Built-in',
+                title: 'super()',
+                desc: 'Proxy object delegating calls to parent/sibling class.',
+                content: `
+                    <p>Used to access inherited methods.</p>
+                    <pre>class Child(Parent):\n    def __init__(self):\n        super().__init__()</pre>`
+            },
+
+            // --- T ---
+            {
+                id: 'tuple',
+                category: 'Built-in',
+                title: 'tuple()',
+                desc: 'Returns an immutable sequence tuple.',
+                content: `
+                    <p>Tuples cannot be changed after creation.</p>
+                    <pre>t = tuple([1, 2])\nprint(t) # (1, 2)</pre>`
+            },
+            {
+                id: 'type',
+                category: 'Built-in',
+                title: 'type()',
+                desc: 'Returns the type of object.',
+                content: `
+                    <p>With 3 args, returns a new type object (dynamic class creation).</p>
+                    <pre>print(type(123)) # &lt;class 'int'&gt;</pre>`
+            },
+
+            // --- V ---
+            {
+                id: 'vars',
+                category: 'Built-in',
+                title: 'vars()',
+                desc: 'Returns __dict__ attribute of object.',
+                content: `
+                    <p>If called without args, acts like <code>locals()</code>.</p>
+                    <pre>class A:\n    def __init__(self): self.x = 1\nprint(vars(A())) # {'x': 1}</pre>`
+            },
+
+            // --- Z ---
+            {
+                id: 'zip',
+                category: 'Built-in',
+                title: 'zip()',
+                desc: 'Aggregates elements from iterables.',
+                content: `
+                    <p>Returns an iterator of tuples.</p>
+                    <pre>names = ['A', 'B']\nnums = [1, 2]\nprint(list(zip(names, nums)))\n# [('A', 1), ('B', 2)]</pre>`
+            },
+
+            {
+                id: 'pep695',
+                category: 'Python 3.14',
+                title: 'Type Parameters',
+                desc: 'Modern generic syntax from PEP 695.',
+                content: `
+                    <p>3.14 alpha stabilizes the new syntax for generic classes and functions.</p>
+                    <pre>def get_first[T](items: list[T]) -> T:\n    return items[0]</pre>
+                    <p class="mt-4">This replaces the older, more verbose <code>TypeVar</code> declarations.</p>
+                `
+            },
+            {
+                id: 'fastapi',
+                category: 'Plugin',
+                title: 'FastAPI',
+                desc: 'Modern, fast web framework for APIs.',
+                content: `
+                    <p>High performance, easy to learn, fast to code, ready for production.</p>
+                    <pre>from fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get("/")\ndef read_root():\n    return {"Hello": "World"}</pre>
+                `
+            },
+            {
+                id: 'pydantic',
+                category: 'Plugin',
+                title: 'Pydantic',
+                desc: 'Data validation using Python type hints.',
+                content: `
+                    <p>Ensures data structures conform to specified types.</p>
+                    <pre>from pydantic import BaseModel\n\nclass User(BaseModel):\n    id: int\n    name: str</pre>
+                `
+            },
+            {
+                id: 'requests',
+                category: 'Plugin',
+                title: 'Requests',
+                desc: 'HTTP library for humans.',
+                content: `
+                    <p>The most common way to make web requests.</p>
+                    <pre>import requests\n\nr = requests.get('https://api.github.com/events')\nprint(r.status_code)</pre>
+                `
+            }
+        ];
